@@ -1,99 +1,127 @@
+# CSV Data Analyst with Groq AI
 
-# Basic CSV Data Agent
-
-A simple Natural Language interface for querying and analyzing CSV data files without writing any code.
-
-## Overview
-
-This project implements a Python-based agent that can answer questions about CSV data using natural language queries. The agent loads CSV files and allows users to extract insights, statistics, and filter data using simple English questions.
+A Streamlit web application that allows users to upload CSV files and ask natural language questions about their data using Groq's AI models.
 
 ## Features
 
-- Load and analyze any CSV file
-- Ask questions in natural language about your data
-- Get statistical summaries, distributions, and insights
-- Filter data based on column values
-- Find correlations between numerical columns
+- **CSV File Upload**: Easy drag-and-drop CSV file uploading
+- **Data Preview**: Automatically displays the first few rows of uploaded data
+- **Natural Language Queries**: Ask questions about your data in plain English
+- **AI-Powered Analysis**: Uses Groq's LLaMA 3 70B model for intelligent data analysis
+- **Interactive Interface**: Clean, user-friendly Streamlit interface
 
-## Repository Structure
+## Prerequisites
 
-```
-├── README.md
-├── data/
-│   ├── hr.csv
-│   ├── dress.csv 
-│   └── myntra.csv
-├── agent/
-│   └── basic_data_agent.py
-└── test_agent.py
-```
+- Python 3.7 or higher
+- Groq API key (sign up at [Groq Console](https://console.groq.com/))
 
-## Getting Started
+## Installation
 
-### Prerequisites
-
-- Python 3.6+
-- pandas
-- numpy
-
-### Installation
-
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/basic-csv-data-agent.git
-   cd basic-csv-data-agent
+1. **Clone or download the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd csv-data-analyst
    ```
 
-2. Install dependencies:
+2. **Install required dependencies**
+   ```bash
+   pip install streamlit pandas langchain-groq python-dotenv
    ```
-   pip install pandas numpy
+
+3. **Set up environment variables**
+   
+   Create a `.env` file in the project root directory:
+   ```
+   GROQ_API_KEY=your_groq_api_key_here
+   ```
+   
+   Replace `your_groq_api_key_here` with your actual Groq API key.
+
+## Usage
+
+1. **Start the application**
+   ```bash
+   streamlit run app.py
    ```
 
-### Usage
+2. **Upload your CSV file**
+   - Click on "Browse files" or drag and drop your CSV file
+   - The app will automatically load and display a preview of your data
 
-Run the interactive test script and provide the path to your CSV file:
+3. **Ask questions about your data**
+   - Type your question in the text input field
+   - Examples of questions you can ask:
+     - "What is the average value in the price column?"
+     - "How many rows contain missing values?"
+     - "What are the top 5 categories by count?"
+     - "Show me summary statistics for all numerical columns"
+     - "What trends do you see in the data?"
 
-```
-python test_agent.py data/your_file.csv
-```
+4. **View AI-generated insights**
+   - The AI will analyze your entire dataset and provide detailed answers
+   - Results are displayed in an easy-to-read format
 
-Then simply type your questions about the data when prompted.
+## Supported File Types
 
-## Sample Questions by Dataset
+- CSV files (.csv)
+- Files should be properly formatted with headers in the first row
 
-### HR Dataset (`hr.csv`)
+## Environment Variables
 
-- "How many rows are in this dataset?"
-- "Show me all columns"
-- "What's the average monthly income?"
-- "Show me the distribution of Department"
-- "What's the relationship between age and monthly income?"
-- "How many employees have attrition = Yes?"
-- "What is the gender distribution?"
-- "Show me employees where MonthlyIncome is > 5000"
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `GROQ_API_KEY` | Your Groq API key for accessing the AI model | Yes |
 
-### Dress Dataset (`dress.csv`)
+## Dependencies
 
-- "How many rows are in this dataset?"
-- "What columns are in this dataset?"
-- "Show me the distribution of Style"
-- "What are the top 5 highest rated dresses?"
-- "How many dresses are recommended?"
-- "Show me the distribution of Season"
-- "What are the most common materials used?"
-- "What's the average rating?"
+- `streamlit`: Web application framework
+- `pandas`: Data manipulation and analysis
+- `langchain-groq`: Integration with Groq AI models
+- `python-dotenv`: Environment variable management
 
-### Myntra Dataset (`myntra.csv`)
+## Model Information
 
-- "How many products are in the dataset?"
-- "What's the average price?"
-- "Show me the distribution of ProductBrand"
-- "What's the gender distribution?"
-- "Show me products where price is > 1000"
-- "What are the most common primary colors?"
-- "How many unique brands are there?"
-- "What are the top 5 most expensive products?"
+This application uses the **LLaMA 3 70B** model from Groq, which provides:
+- High-quality natural language understanding
+- Efficient processing of structured data
+- Detailed analytical responses
 
-## Extending the Agent
+## Limitations
 
-To add more query capabilities, modify the `process_query` method in the `CustomCSVDataAgent` class to handle additional patterns and questions.
+- Large CSV files may take longer to process
+- The entire dataset is sent to the AI model for analysis
+- API rate limits may apply based on your Groq plan
+
+## Troubleshooting
+
+### Common Issues
+
+**"API key not found" error**
+- Ensure your `.env` file is in the correct directory
+- Verify your Groq API key is valid and properly formatted
+
+**File upload issues**
+- Check that your file is a valid CSV format
+- Ensure the file size is within reasonable limits
+- Verify the CSV has proper headers
+
+**Slow responses**
+- Large datasets may take time to process
+- Consider using smaller sample datasets for testing
+
+## Security Notes
+
+- Never commit your `.env` file to version control
+- Keep your API keys secure and don't share them publicly
+- The application sends your data to Groq's servers for processing
+
+
+## Example Questions to Try
+
+Once you've uploaded your CSV, try asking these types of questions:
+
+- **Statistical Analysis**: "What are the mean, median, and mode of the sales column?"
+- **Data Quality**: "Are there any missing values in the dataset?"
+- **Trends**: "What patterns do you notice in the data over time?"
+- **Comparisons**: "Compare the performance between different categories"
+- **Summaries**: "Give me a summary of the key insights from this data"
